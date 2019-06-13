@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    redis:
+        image: 'redis:5.0.4'
+        ports:
+            - '6379:6379'
+    
+    node:
+        image: 'node:10-alpine'
+        working_dir: /home/node/app
+        command:
+            - /bin/sh
+            - '-c'
+            - 'npm install && npm start'
+        ports:
+            - '3000:3000'
+        volumes:
+            - './:/home/node/app'
